@@ -1,0 +1,94 @@
+#pragma once
+
+#include<iostream>
+#include<stdlib.h>
+#include<time.h>
+#include<stdio.h>
+
+using namespace std;
+
+class player {
+
+private:
+	int health, attack;
+	int myHealth, myAttack;
+	int eneHealth, eneAttack;
+	int randWeapon; 
+	string playName, playClass;
+
+	struct weaponry {
+
+		string armName;
+		int armAttack;
+
+	};
+
+	weaponry arr[4];
+
+public:
+
+	player() {
+
+		arr[0].armName = "Bow and 3 arrows";
+		arr[0].armAttack = 30;
+		arr[1].armName = "Flame Thrower";
+		arr[1].armAttack = 50;
+		arr[2].armName = "Needle";
+		arr[2].armAttack = 10;
+		arr[3].armName = "Saber";
+		arr[3].armAttack = 30;
+
+		srand(time(NULL));
+		eneAttack = rand() % 20 + 70;
+		eneHealth = rand() % 50 + 100;
+
+	}
+	
+	void start();
+	void menu();
+	void setClass(int health1, int attack1, string clase1);
+	void weaponChoice();
+	void clash();
+	void tryAgain();
+	void endGame(int x);
+
+};
+
+class offensive : public player {
+
+public:
+
+	int a, h;
+	string o;
+
+	offensive() {
+
+		o = "Offensive";
+
+		srand(time(NULL));
+		a = rand() % 20 + 60;
+		h = rand() % 15 + 100;
+
+		setClass(h, a, o);
+	}
+};
+
+class defensive : public player {
+
+public: 
+	 
+	int a, h;
+	string d;
+
+	defensive() {
+
+		d = "Defensive";
+
+		srand(time(NULL));
+		a = rand() % 20 + 40;
+		h = rand() % 30 + 100;
+
+		setClass(h, a, d);
+
+	}
+};
